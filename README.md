@@ -1,3 +1,35 @@
+## 一个基于以太坊智能合约的众筹项目
+
+
+
+### 成员变量设计
+
+| 名称         | 数据类型  | 说明                                           |
+| :----------- | :-------- | :--------------------------------------------- |
+| manager      | address   | 众筹发起人地址(众筹发起人)                     |
+| projectName  | string    | 项目名称                                       |
+| supportMoney | uint      | 众筹参与人需要付的钱                           |
+| endTime      | uint      | 默认众筹结束的时间,为众筹发起后的一个月        |
+| goalMoney    | uint      | 目标募集的资金(endTime后,达不到目标则众筹失败) |
+| players      | address[] | 众筹参与人的数组                               |
+| requests     | Request[] | 付款请求申请的数组                             |
+
+### 函数设计
+
+| 函数名称        | 函数说明                                     |
+| :-------------- | :------------------------------------------- |
+| Funding         | 构造函数                                     |
+| support         | 我要支持(需要付钱)                           |
+| createRequest   | 付款申请函数,由众筹发起人调用                |
+| approveRequest  | 付款批准函数, 由众筹参与人调用               |
+| finalizeRequest | 众筹发起人调用, 可以调用完成付款             |
+| moneyBack       | 退钱函数, 由众筹发起人调用(众筹未成功时调用) |
+
+
+
+### 代码实现
+
+```solidity
 pragma solidity ^0.4.17;
 
 contract Funding{
@@ -116,4 +148,6 @@ contract Funding{
         _;
     }
 }
+
+```
 
